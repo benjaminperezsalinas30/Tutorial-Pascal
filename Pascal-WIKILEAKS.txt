@@ -1,0 +1,998 @@
+Ejercicios en Pascal
+
+1)
+
+var 
+  x, y, b: integer;
+
+begin
+	readln(x);
+	readln(y);
+
+	writeln('x = ', x, ', y = ', y);
+
+	b := x;
+	x := y;
+	y := b;
+
+	writeln('x = ', x, ', y = ', y);
+
+end.
+
+input:
+
+3
+2
+x = 3, y = 2
+x = 2, y = 3
+
+2)
+
+var
+n: integer;
+a, b, c, d: byte;
+
+begin 
+	randomize;
+	n := random(9000) + 1000;
+	writeln(n);
+
+	a := n div 1000;
+	b := (n div 100) mod 10;
+	c := (n div 10) mod 10;
+	d := n mod 10;
+
+	write('ab + cd = ');
+	write( a * b, ' + ', c * d);
+	writeln(' = ', a * b + c * d);
+end.
+
+input:
+
+9264
+ab + cd = 18 + 24 = 42
+
+3)
+
+var
+n: integer;
+a, b, c: byte;
+
+begin 
+	randomize;
+	n := random(900) + 100;
+	writeln(n);
+
+	a := n div 100;
+	b := n div 10 mod 10;
+	c := n mod 10;
+
+	writeln('Sum: ', a + b + c);
+	writeln('Mult: ', a * b * c);
+end.
+
+input:
+
+391
+Sum: 13
+Mult: 27
+
+4)
+
+var 
+x, y: char;
+xn, yn, n: byte;
+
+begin
+	write('Char 1: ');
+	readln(x);
+	write('Char 2: ');
+	readln(y);
+
+	xn := ord(x) - ord('a') + 1;
+	yn := ord(y) - ord('a') + 1;
+	writeln('Position 1: ', xn);
+	writeln('Position 2: ', yn);
+
+	n := abs(yn - xn) - 1;
+	writeln('Chars between them: ', n);
+
+	writeln;
+
+	write('Char Position: ');
+	readln(n);
+
+	n := n + ord('a') - 1;
+	writeln('This char is ', chr(n));
+end.
+
+input:
+
+Char 1: g
+Char 2: u
+Position 1: 7
+Position 2: 21
+Chars between them: 13
+
+Char Position: 20
+This char is t
+
+5)
+
+var 
+a, b, sign, n: integer;
+sum: real;
+begin
+	a := 1;
+	b := 2;
+	sign := 1;
+	sum := 0;
+	n := 0;
+
+	while a/b > 0.001 do begin
+	sum := sum + sign * (a/b);
+	n := n + 1;
+	sign := -sign;
+	a := a + 1;
+	b := b * 2;
+	end;
+
+	writeln('Sum: ', sum:5:3);
+	writeln('Qty: ', n);
+end.
+
+input:
+
+Sum: 0.223
+Qty: 13
+
+6)
+
+var
+x, y: real;
+
+begin
+	x := -5;
+
+	writeln('x     y');
+
+	while x <= 5 do begin
+	y := 5 - x * x / 2;
+	writeln(x:4:1,' | ', y:5:2);
+	x := x + 0.5;
+end;
+end.
+
+input:
+
+x     y
+-5.0 | -7.50
+-4.5 | -5.13
+-4.0 | -3.00
+-3.5 | -1.13
+-3.0 |  0.50
+-2.5 |  1.88
+-2.0 |  3.00
+-1.5 |  3.88
+-1.0 |  4.50
+-0.5 |  4.88
+ 0.0 |  5.00
+ 0.5 |  4.88
+ 1.0 |  4.50
+ 1.5 |  3.88
+ 2.0 |  3.00
+ 2.5 |  1.88
+ 3.0 |  0.50
+ 3.5 | -1.13
+ 4.0 | -3.00
+ 4.5 | -5.13
+ 5.0 | -7.50
+
+7)
+
+const
+N = 10;
+
+var
+arr: array[1..N] of integer;
+id: array[1..N] of byte;
+min, max: integer;
+i, m: byte;
+
+begin
+	randomize;
+	for i := 1 to N do begin
+	arr[i] := random(100);
+	write(arr[i], ' ');
+	end;
+	writeln;
+
+	write('Min: '); readln(min);
+	write('Max: '); readln(max);
+
+	m := 0;
+	for i := 1 to N do
+	   if(arr[i] >= min) and
+	     (arr[i] <= max) then
+		begin
+		   m := m + 1;
+		   id[m] := i;
+		end;
+	writeln('Total: ', m);
+	write('Id: ');
+	for i := 1 to m do
+	   write(id[i], ' ');
+	writeln;
+end.
+
+input:
+
+67 81 44 60 98 48 99 17 44 56
+Min: 25
+Max: 75
+Total: 6
+Id: 1 3 4 6 9 10
+
+8)
+
+const
+N = 10;
+var 
+a: array[1..N] of integer;
+i: byte;
+
+begin
+	randomize;
+	for i := 1 to N do begin
+	    a[i] := random(20);
+		write(a[i]:4);
+	end;
+	writeln;
+
+	write('Items that are larger ');
+	writeln('Than the previous one: ');
+
+	for i := 1 to N - 1 do
+	   if a[i] < a[i+1] then
+	      write(a[i+1]:4);
+
+	writeln;
+end.
+
+input:
+
+11  17  18   0   0  11   5  17   6   9
+Items that are larger Than the previous one:
+  17  18  11  17   9
+
+9)
+
+var
+	x, y: integer;
+begin
+	write('x = '); readln(x);
+	write('y = '); readln(y);
+
+	write('Quater of the coordinate plane: ');
+
+	if (x > 0) and(y > 0) then
+		writeln('I')
+        else if (x < 0) and (y > 0) then
+		writeln('II')
+        else if (x < 0) and (y < 0) then
+		writeln('III')
+        else if (x > 0) and (y < 0) then
+		writeln('IV')
+        else
+		writeln('The point lies on the axis.');
+
+end.
+
+input:
+
+x = 6
+y = -3
+Quater of the coordinate plane: IV
+
+10)
+
+var
+	number, count, i: integer;
+	flag: boolean;
+
+begin
+	count := 0;
+	readln(number);
+
+	while number > 1 do begin
+
+		flag := TRUE;
+
+		for i := 2 to round(sqrt(number)) do 
+		  if number mod i = 0 then begin
+			  flag := FALSE;
+			  break;
+	          end;
+	if flag then
+		count := count + 1;
+        
+        readln(number);
+     end;
+
+     writeln('Number of primes: ', count);
+end.
+
+input:
+
+56
+31
+18
+15
+7
+101
+0
+Number of primes: 3
+
+11)
+
+var
+   a, b: integer;
+
+begin
+	write('A: '); readln(a);
+	write('B: '); readln(b);
+
+	if a < b then
+	for a := a to b do
+	writeln(a*a*a)
+
+	else
+	for a := a downto b do
+	writeln(a*a*a);
+end.
+
+input:
+
+A: 2
+B: 7
+8
+27
+64
+125
+216
+343
+
+12)
+
+const
+   N = 6;
+   M = 5;
+var
+   arr: array[1..N,1..M] of integer;
+   i, j, mi, mj: byte;
+begin
+	randomize;
+	mi := 1;
+	mj := 1;
+	for i := 1 to N do begin
+	   for j := 1 to M do begin
+	      arr[i,j] := random(100)-50;
+	      write(arr[i,j]:4);
+	    end;
+	    writeln;
+	    if abs(arr[i,j]) > abs(arr[mi,mj]) then begin
+	          mi := i;
+	          mj := j;
+	    end;
+	end;
+
+
+	writeln('Item [',mi,',',mj,'] = ', arr[mi,mj]);
+end.
+
+input:
+
+ -41  14  39   6 -13
+ -47 -21  10 -13  17
+  38  38  29  17  -8
+  41  33  35  17   3
+  36 -18  37 -22  -1
+ -26  48 -25 -41  15
+Item [1,1] = -41
+
+13)
+
+const
+   N = 5; M = 10;
+
+var
+   arr: array[1..N,1..M] of byte;
+   i, j, a, b, buff: byte;
+
+begin
+	randomize;
+	for i:=1 to N do begin
+	    for j:=1 to M do begin
+	        arr[i,j] := random(20);
+	        write(arr[i,j]:3);
+	    end;
+	    writeln;
+	end;
+
+	write('Rows to change: ');
+	readln(a, b);
+
+	for j := 1 to M do begin
+	    buff := arr[a,j];
+	    arr[a,j] := arr[b,j];
+	    arr[b,j] := buff;
+	end;
+
+	for i := 1 to N do begin
+	    for j := 1 to M do
+	        write(arr[i,j]:3);
+	    writeln;
+	end;
+end.
+
+input:
+
+ 7 18 14  3  2  9 16  7  3  3
+ 15 19 14  4 11  7  6 18 19  8
+  0  9  7  2  1  2  5  6  0  8
+  7 15  2  5  9  3  4  7  3 15
+  6 13  0 11 19  4  3  3 17  4
+Rows to change:       1 6
+  0  0  0  0  0  0  0  0  0  0
+ 15 19 14  4 11  7  6 18 19  8
+  0  9  7  2  1  2  5  6  0  8
+  7 15  2  5  9  3  4  7  3 15
+  6 13  0 11 19  4  3  3 17  4
+
+14)
+
+var s, i: integer;
+
+function next(var seed: integer): integer;
+     const
+         multiplier = 37;
+         increment = 3;
+         cycle = 64;
+     begin
+        next := seed;
+        seed := (multiplier * seed + increment) mod cycle
+    end;
+
+begin
+	s := 16;
+	writeln(next(s));
+	writeln(next(s));
+	writeln(next(s));
+	writeln(next(s));
+
+	s := 16;
+	for i := 1 to 5 do
+	   write(next(s):3);
+
+end.
+
+input:
+
+16
+19
+2
+13
+ 16 19  2 13 36
+
+15)
+
+var
+  x1, y1, x2, y2: real;
+  k, b: real;
+
+begin
+write('A(x1;y1): ');
+readln(x1, y1);
+write('B(x2;y2): ');
+readln(x2, y2);
+
+k := (y1 - y2) / (x1 - x2);
+b := y2 - k * x2;
+
+writeln('y = ', k:0:2, 'x + ', b:0:2);
+
+end. 
+
+16)
+
+A(x1;y1): 4 2.2
+B(x2;y2): -3.4 5
+y = -0.38x + 3.71
+
+17)
+
+var
+   year: word;
+
+begin 
+   write('input a year: ');
+   readln(year);
+
+   if year mod 4 = 0 then
+      if (year mod 100 = 0) and(year mod 400 <> 0 ) then
+         year := 365
+      else
+         year := 366
+    else
+        year := 365;
+
+    writeln('The number of days in the year: ', year);
+
+    if year = 365 then
+      writeln('It is not a leap year.')
+    else
+      writeln('It is a leap year.');
+end.
+
+input:
+
+input a year: 2024
+The number of days in the year: 366
+It is a leap year.
+
+18)
+
+const
+N = 5;
+
+var
+m: array[1..N,1..N] of integer;
+i, j: byte;
+min: integer;
+
+begin
+randomize;
+for i := 1 to N do begin
+   for j := 1 to N do begin
+       m[i,j] := random(100) - 50;
+       write(m[i,j]:5);
+    end;
+    writeln;
+  end;
+
+  min := 32767;
+
+  for i := 1 to N do begin
+     write(' ':5 * (N - i+1));
+     for j := N-i+2 to N do begin
+         write(m[i,j]:5);
+         if min > m[i,j] then
+            min := m[i,j];
+      end;
+      writeln;
+    end;
+
+    writeln('Minimum: ', min);
+end.
+
+input:
+
+-6   10   45   -9   10
+    3   49  -23  -20  -41
+   30  -33   -1  -34  -15
+    7  -19  -49   40   19
+   44   45  -22   -1  -16
+
+                      -41
+                 -34  -15
+            -49   40   19
+        45  -22   -1  -16
+Minimum: -49
+
+19)
+
+const
+N = 10;
+
+var 
+a: array[1..N] of integer;
+i: byte;
+min, max: integer;
+
+begin
+randomize;
+for i := 1 to N do begin
+a[i] := random(100);
+write(a[i], ' ');
+end;
+writeln;
+
+min := 100;
+max := -1;
+
+for i := 1 to N do
+if a[i] > max then
+max := a[i]
+else
+if a[i] < min then
+min := a [i];
+
+write(max, ' - ', min, ' = ');
+writeln(max - min);
+end.
+
+input:
+
+50 71 31 29 18 14 85 9 11 58
+85 - 9 = 76
+
+20)
+
+const
+N = 20;
+
+var 
+arr: array[1..N] of integer;
+i, m, qty: byte;
+
+begin
+write('Amount of items: ');
+readln(m);
+write('Items: ');
+for i := 1 to m do
+read(arr[i]);
+readln;
+
+qty := 0;
+i := 2;
+while i < m do
+if(arr[i] > arr[i - 1]) and
+(arr[i] > arr[i+1]) then
+begin
+qty := qty + 1;
+i := i + 2
+end
+else
+i := i + 1;
+
+write('Number of items that are larger than neightbors: ');
+writeln(qty);
+end.
+
+input:
+
+Amount of items: 10
+Items: 3 4 2 1 5 2 3 4 5 6
+Number of items that are larger than neightbors: 2
+
+21)
+
+var
+   i, j: integer;
+
+begin
+    for i := 1 to 9 do begin
+
+        for j := 1 to 9 do 
+            write((i * j):3);
+
+        writeln;
+    end;
+
+end.
+
+input:
+
+1  2  3  4  5  6  7  8  9
+  2  4  6  8 10 12 14 16 18
+  3  6  9 12 15 18 21 24 27
+  4  8 12 16 20 24 28 32 36
+  5 10 15 20 25 30 35 40 45
+  6 12 18 24 30 36 42 48 54
+  7 14 21 28 35 42 49 56 63
+  8 16 24 32 40 48 56 64 72
+  9 18 27 36 45 54 63 72 81
+
+22)
+
+var factorial: longint;
+n, i: byte;
+
+begin
+   write('n = '); readln(n);
+
+   factorial := 1;
+
+   for i := 2 to n do
+     factorial := factorial * i;
+
+    writeln('n! = ', factorial);
+
+end.
+
+input:
+
+n = 5
+n! = 120
+
+23)
+
+var n, sum, mult: integer;
+
+begin
+   write('Enter number: ');
+   readln(n);
+
+   sum := 0;
+   mult := 1;
+
+   while n > 0 do begin
+      sum := sum + n mod 10;
+      mult := mult * (n mod 10);
+      n := n div 10
+    end;
+
+    writeln('Sum of digits = ', sum);
+    writeln('Multiplication of digits = ', mult);
+end.
+
+input:
+
+Enter number: 27364
+Sum of digits = 22
+Multiplication of digits = 1008
+
+24)
+
+var
+  a, b: real;
+
+function average(c, d: real): real;
+    begin
+        average := (c + d) / 2;
+    end;
+
+begin
+   readln(a, b);
+   writeln(average(a, b):5:2);
+end.
+
+input:
+
+5 4.55
+ 4.78
+
+25)
+
+var
+  s: string;
+  i, len: byte;
+
+begin
+  write('Input string: ');
+  readln(s);
+
+  write('Place of start to delete: ');
+  readln(i);
+
+  write('Length to delete: ');
+  readln(len);
+
+  delete(s, i, len);
+
+  writeln(s);
+end.
+
+input:
+
+Input string: one two three
+Place of start to delete: 4
+Length to delete: 4
+one three
+
+26)
+
+var
+  a: longint;
+  b: byte;
+
+begin
+  readln(a);
+
+  b := a mod 10;
+
+  while a >= 10 do
+      a := a div 10;
+
+  writeln(b+a);
+end.
+
+input:
+
+2347
+9
+
+27)
+
+var
+  n, sum, mult: integer;
+
+begin
+  write('Enter number: ');
+  readln(n);
+
+  sum := 0;
+  mult := 1;
+
+  while n > 0 do begin
+      sum := sum + n mod 10;
+      mult := mult * (n mod 10);
+      n := n div 10
+  end;
+
+  writeln('Sum of digits = ', sum);
+  writeln('Multiplication of digits = ', mult);    
+end.
+
+input:
+
+Enter number: 27364
+Sum of digits = 22
+Multiplication of digits = 1008
+
+28)
+
+const
+   N = 20;
+
+var
+   arr: array[1..N] of integer;
+   i, m, qty: byte;
+
+begin
+   write('Amount  of items: ');
+   readln(m);
+   write('Items: ');
+   for i := 1 to m do
+       read(arr[i]);
+    readln;
+
+    qty := 0;
+    i := 2;
+    while i < m do
+        if(arr[i] > arr[i-1]) and
+          (arr[i] > arr[i+1]) then
+        begin
+           qty := qty + 1;
+           i := i + 2
+        end
+        else
+           i := i + 1;
+write('Number of items that are larger than neighbors: ');
+writeln(qty);
+end.
+
+input:
+
+Amount  of items: 10
+Items: 3 4 1 5 2 3 4 5 6
+2
+Number of items that are larger than neighbors: 3
+
+29)
+
+const N = 5;
+
+var 
+  arr: array[1..N,1..N] of integer;
+  max: integer;
+  i, j: byte;
+
+begin
+   randomize;
+   for i:= 1 to N do begin
+       for j:=1 to N do begin
+           arr[i,j] := random(1000);
+           write(' |',arr[i,j]:3,'| ');
+       end;
+       writeln;
+    end;
+
+    for i:=1 to N do
+        write(' ----- ');
+    writeln;
+
+    for j:=1 to N do begin
+        max := arr[1,j];
+        for i:=2 to N do
+            if arr[i,j] > max then
+               max := arr[i,j];
+        write('  ',max:3, '   ');
+    end;
+    writeln;
+end.
+
+input:
+
+ |226|  |629|  |442|  |970|  |403|
+ |818|  |553|  |513|  |208|  |771|
+ |268|  |171|  |411|  | 67|  | 37|
+ |531|  |647|  |465|  |682|  |789|
+ |678|  |884|  |787|  |898|  |915|
+ -----  -----  -----  -----  -----
+  818     884     787     970     915
+
+30)
+
+const
+   M = 6;
+   N = 7;
+
+type
+   matrix = array[1..M, 1..N] of real;
+
+var
+   a: matrix;
+   i,j: byte;
+
+begin
+   randomize;
+   for i:=1 to M do begin
+       for j:=1 to N do begin
+           a[i,j] := random();
+           a[i,j] := a[i,j] * 10;
+           a[i,j] := round(a[i,j]);
+           a[i,j] := a[i,j] / 10;
+           write(a[i,j]:5:2);
+        end;
+        writeln;
+    end;
+end.
+
+input:
+
+0.60 0.40 0.70 0.20 0.30 0.20 0.20
+ 0.60 0.10 0.30 0.70 0.40 0.00 0.00
+ 0.30 0.50 0.10 0.90 0.70 0.30 0.10
+ 1.00 0.50 0.80 0.60 0.30 0.80 0.00
+ 0.70 0.20 0.10 0.60 0.80 0.30 0.00
+ 0.60 0.00 0.50 0.50 0.60 0.30 0.30
+
+31)
+
+var
+   K,L,M,KL,LM,KM: real;
+
+procedure triangle(var A,B,C,AB,BC,AC: real);
+    var radA, radB, radC: real;
+    begin
+       C:= 180 - A - B;
+       radA := A * PI/180;
+       radB := b * PI/180;
+       radC := C * PI/180;
+       BC := (sin(radA) * AB) / sin(radC);
+       AC := (sin(radB) * AB) / sin(radC);
+    end;
+
+begin
+    write('A = '); readln(K);
+    write('B = '); readln(L);
+    write('AB = '); readln(KL);
+    triangle(K,L,M,KL,LM,KM);
+    writeln('C = ',M:7:2);
+    writeln('BC = ',LM:6:2);
+    writeln('AC = ',KM:6:2);
+
+end.
+
+input:
+
+A = 35
+B = 55
+AB = 10
+C =   90.00
+BC =   5.74
+AC =   8.19
+
+32)
+
